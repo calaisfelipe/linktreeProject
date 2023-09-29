@@ -6,6 +6,7 @@ import Image from "next/image";
 import gradient from "@/public/img/gradient.svg";
 import LinkTree from "@/components/LinkTree";
 import Footer from "@/components/Footer";
+import ParticleContainer from "@/components/fire";
 
 const arrColorWeight = ["extralight", "light", "medium", "bold"];
 
@@ -16,8 +17,8 @@ export default function Home() {
     let color = 0;
 
     setInterval(() => {
-      if (color > 3) {
-        color = -1;
+      if (color >= 3) {
+        color = 0;
       }
 
       setBgcolor(arrColorWeight[color]);
@@ -26,6 +27,8 @@ export default function Home() {
   }, []);
 
   return (
+    <>
+    
     <main className="fixed h-screen inset-0 bg-black flex flex-col items-center bg-opacity-30 z-10 pt-3">
       <div
         className={cn(
@@ -45,16 +48,16 @@ export default function Home() {
         src={gradient}
         className="fixed inset-0 w-screen h-screen object-cover z-10"
       />
-
+      <ParticleContainer />
       <div
         className={cn(
-          "bg-teal-100 fixed inset-0 transition-opacity duration-[1500ms]",
+          "bg-teal-400 fixed inset-0 transition-opacity duration-[1500ms]",
           !bgcolor ? "opacity-100" : "opacity-0"
         )}
       />
-
       <LinkTree />
       <Footer />
     </main>
+    </>
   );
 }
